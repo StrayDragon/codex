@@ -62,6 +62,12 @@ fn system_details(parsed: &[ParsedDetail]) -> Vec<HumanDetail> {
     push_row_if_present(&mut out, parsed, "LC_ALL", "LC_ALL");
     push_row_if_present(&mut out, parsed, "LC_CTYPE", "LC_CTYPE");
     push_row_if_present(&mut out, parsed, "LANG", "LANG");
+    push_row_if_present(&mut out, parsed, "VISUAL", "VISUAL");
+    push_row_if_present(&mut out, parsed, "EDITOR", "EDITOR");
+    push_row_if_present(&mut out, parsed, "PAGER", "PAGER");
+    push_row_if_present(&mut out, parsed, "GIT_PAGER", "GIT_PAGER");
+    push_row_if_present(&mut out, parsed, "GH_PAGER", "GH_PAGER");
+    push_row_if_present(&mut out, parsed, "LESS", "LESS");
     push_remaining(
         &mut out,
         parsed,
@@ -73,6 +79,12 @@ fn system_details(parsed: &[ParsedDetail]) -> Vec<HumanDetail> {
             "LC_ALL",
             "LC_CTYPE",
             "LANG",
+            "VISUAL",
+            "EDITOR",
+            "PAGER",
+            "GIT_PAGER",
+            "GH_PAGER",
+            "LESS",
         ],
         &[],
     );
@@ -413,6 +425,7 @@ fn state_details(parsed: &[ParsedDetail]) -> Vec<HumanDetail> {
     push_database_row(&mut out, parsed, "state DB");
     push_database_row(&mut out, parsed, "log DB");
     push_database_row(&mut out, parsed, "goals DB");
+    push_database_row(&mut out, parsed, "memories DB");
 
     for (source, label) in [
         ("active rollout files", "active rollouts"),
@@ -440,6 +453,8 @@ fn state_details(parsed: &[ParsedDetail]) -> Vec<HumanDetail> {
             "state DB integrity",
             "log DB integrity",
             "goals DB integrity",
+            "memories DB",
+            "memories DB integrity",
             "active rollout files",
             "archived rollout files",
         ],
